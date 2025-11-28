@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#ffafcc">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>The Elusive Heart 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+    :root {
+            --blush-pink: #ffafcc;
+            --soft-lavender: #cdb4db;
+            --cream: #ffc8dd;
+            --warm-white: #fffffc;
+            --gold: #ffd700;
+            --safe-top: env(safe-area-inset-top, 20px);
+            --safe-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        html, body {
+            height: 100%;
+      overflow: hidden;
+      touch-action: manipulation;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            background: linear-gradient(135deg, var(--blush-pink), var(--soft-lavender), var(--cream));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+            align-items: center;
+      justify-content: center;
+      position: relative;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Floating particles - reduced for Redmi Y2 performance */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            opacity: 0.5;
+            animation: float 25s infinite ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+
+        /* Main content */
+        .main-content {
+            text-align: center;
+      z-index: 10;
+      padding: 20px;
+            padding-top: calc(var(--safe-top) + 20px);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideUp 0.8s ease-out 0.3s forwards;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart-icon {
+            font-size: 60px;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            margin-bottom: 15px;
+        }
+
+        @media (min-height: 700px) {
+            .heart-icon {
+                font-size: 70px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            15% { transform: scale(1.15); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+            60% { transform: scale(1); }
+        }
+
+        .question {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2rem, 7vw, 3.5rem);
+            color: #5a3d5c;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        @media (min-height: 700px) {
+            .question {
+                margin-bottom: 40px;
+            }
+        }
+
+        .buttons-container {
+      display: flex;
+            gap: 20px;
+      justify-content: center;
+      align-items: center;
+            flex-wrap: wrap;
+            min-height: 100px;
+      position: relative;
+        }
+
+        .btn {
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.2s ease,
+                        opacity 0.2s ease;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+      position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:active::before {
+            left: 100%;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+            color: white;
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            padding: 16px 40px;
+            box-shadow: 0 6px 25px rgba(255, 107, 157, 0.4),
+                        0 0 30px rgba(255, 107, 157, 0.3);
+            animation: pulseGlow 2s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 6px 25px rgba(255, 107, 157, 0.4), 0 0 30px rgba(255, 107, 157, 0.3); }
+            50% { box-shadow: 0 6px 35px rgba(255, 107, 157, 0.6), 0 0 50px rgba(255, 107, 157, 0.5); }
+        }
+
+        .btn-yes:active {
+            transform: scale(0.95);
+        }
+
+        .btn-no {
+            background: rgba(255, 255, 255, 0.5);
+            color: #8b6d8b;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            padding: 12px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 5;
+        }
+
+        .btn-no:active {
+            transform: scale(0.92);
+        }
+
+        .btn-no.fixed-position {
+            position: fixed;
+        }
+
+        /* Inverted UI */
+        body.inverted .main-content {
+            transform: rotate(180deg);
+            transition: transform 0.5s ease;
+        }
+
+        /* Victory screen */
+        .victory-screen {
+      position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffd700, #ffb347, #ff6b9d);
+            background-size: 400% 400%;
+            animation: victoryGradient 3s ease infinite;
+            display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+            z-index: 100;
+      opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .victory-screen.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @keyframes victoryGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .victory-message {
+      text-align: center;
+            padding: 20px;
+            padding-bottom: calc(var(--safe-bottom) + 20px);
+            z-index: 10;
+    }
+    
+        .victory-title {
+      font-family: 'Dancing Script', cursive;
+            font-size: clamp(1.8rem, 9vw, 3.5rem);
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: scale(0.3);
+        }
+
+        .victory-title.animate {
+            animation: bounceIn 0.8s ease forwards;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .victory-text {
+            font-size: clamp(0.95rem, 4vw, 1.3rem);
+            color: white;
+            max-width: 350px;
+            margin: 0 auto 25px;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .victory-text.animate {
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Bouquet */
+        .bouquet {
+            font-size: 80px;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        @media (min-height: 700px) {
+            .bouquet {
+                font-size: 100px;
+            }
+        }
+
+        .bouquet.animate {
+            animation: bouquetAppear 1s ease 1s forwards;
+        }
+
+        @keyframes bouquetAppear {
+            0% { opacity: 0; transform: scale(0) rotate(-20deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .btn-replay {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            padding: 12px 30px;
+            margin-top: 25px;
+            opacity: 0;
+        }
+
+        .btn-replay.animate {
+            animation: fadeIn 0.5s ease 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Attempt counter */
+        .attempt-counter {
+            position: fixed;
+            bottom: calc(var(--safe-bottom) + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            color: rgba(90, 61, 92, 0.6);
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        /* Poof effect */
+        .poof {
+      position: fixed;
+      pointer-events: none;
+            font-size: 30px;
+            animation: poofAnim 0.5s ease-out forwards;
+            z-index: 50;
+        }
+
+        @keyframes poofAnim {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+  </style>
+</head>
+<body>
+    <!-- Particles background -->
+    <div class="particles-container" id="particles"></div>
+
+
+    <!-- Main content -->
+    <div class="main-content" id="mainContent">
+        <div class="heart-icon">💖</div>
+        <h1 class="question">Do you love me?</h1>
+        <div class="buttons-container" id="buttonsContainer">
+            <button class="btn btn-yes" id="yesBtn">Yes! 💕</button>
+            <button class="btn btn-no" id="noBtn">No</button>
+      </div>
+    </div>
+
+    <!-- Attempt counter -->
+    <div class="attempt-counter" id="attemptCounter"></div>
+
+    <!-- Victory screen -->
+    <div class="victory-screen" id="victoryScreen">
+        <div class="victory-message">
+            <h2 class="victory-title" id="victoryTitle">I knew it! 🎉</h2>
+            <p class="victory-text" id="victoryText"> I Love you moree❤️</p>
+            <div class="bouquet" id="bouquet">💐</div>
+            <button class="btn btn-replay" id="replayBtn">Play Again? 🔄</button>
+    </div>
+  </div>
+
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+<script>
+        // Prevent double-tap zoom on iOS
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(e) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+
+        // Audio context and sounds
+        let audioContext = null;
+        const soundEnabled = true; // Sound is always enabled
+
+        // Voice audio elements - Add your voice file paths here
+        const VOICE_PATHS = {
+            yes: 'lyvv.mp3',  // Change this to your Yes button voice file path
+            no: [
+                'k.mp3',  // Change these to your No button voice file paths
+                'eti.mp3',
+                'arey.mp3',
+                'voices/no4.mp3'
+            ]
+        };
+
+        // Background music path
+        const BACKGROUND_MUSIC_PATH = 'cute.mp3';
+
+        const voiceAudios = {
+            yes: null,
+            no: [null, null, null, null]
+        };
+
+        let backgroundMusic = null;
+        let noVoiceIndex = 0; // Track which No voice to play next
+
+        // Load voice files automatically
+        function loadVoices() {
+            // Load Yes voice
+            if (VOICE_PATHS.yes) {
+                voiceAudios.yes = new Audio(VOICE_PATHS.yes);
+                voiceAudios.yes.preload = 'auto';
+                voiceAudios.yes.volume = 1.0; // Maximum volume so voices are louder than background music
+            }
+            
+            // Load No voices
+            VOICE_PATHS.no.forEach((path, index) => {
+                if (path) {
+                    voiceAudios.no[index] = new Audio(path);
+                    voiceAudios.no[index].preload = 'auto';
+                    voiceAudios.no[index].volume = 1.0; // Maximum volume so voices are louder than background music
+                }
+            });
+        }
+
+        // Load and play background music
+        function loadBackgroundMusic() {
+            if (BACKGROUND_MUSIC_PATH) {
+                backgroundMusic = new Audio(BACKGROUND_MUSIC_PATH);
+                backgroundMusic.loop = true;
+                backgroundMusic.volume = 0.2; // Set volume to 20% so voices are louder
+                backgroundMusic.preload = 'auto';
+            }
+        }
+
+        // Start background music automatically
+        function startBackgroundMusic() {
+            if (backgroundMusic && backgroundMusic.paused) {
+                const playPromise = backgroundMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(e => {
+                        console.log('Background music autoplay blocked, will start on user interaction:', e);
+                    });
+                }
+            }
+        }
+
+        // Initialize voices and background music on page load
+        loadVoices();
+        loadBackgroundMusic();
+        
+        // Try to start music automatically - multiple attempts for better compatibility
+        // Try immediately when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => startBackgroundMusic(), 100);
+            });
+        } else {
+            setTimeout(() => startBackgroundMusic(), 100);
+        }
+        
+        // Try on window load
+        window.addEventListener('load', () => {
+            setTimeout(() => startBackgroundMusic(), 200);
+        });
+        
+        // Try after a short delay
+        setTimeout(() => startBackgroundMusic(), 500);
+        setTimeout(() => startBackgroundMusic(), 1000);
+
+        // Initialize audio context on first user interaction
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            // Resume audio context if suspended (required for mobile)
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        function playSound(type) {
+            initAudio();
+            if (!audioContext) return;
+
+            try {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                switch(type) {
+                    case 'blip':
+                        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+                        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.1);
+                        break;
+                    case 'swoosh':
+                        oscillator.type = 'sawtooth';
+                        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                        oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.15);
+                        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.15);
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.15);
+                        break;
+                    case 'chime':
+                        oscillator.type = 'sine';
+                        oscillator.frequency.setValueAtTime(523, audioContext.currentTime);
+                        gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+                        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                        oscillator.start();
+                        oscillator.stop(audioContext.currentTime + 0.5);
+                        
+                        setTimeout(() => {
+                            if (!soundEnabled || !audioContext) return;
+                            try {
+                                const osc2 = audioContext.createOscillator();
+                                const gain2 = audioContext.createGain();
+                                osc2.connect(gain2);
+                                gain2.connect(audioContext.destination);
+                                osc2.frequency.setValueAtTime(659, audioContext.currentTime);
+                                gain2.gain.setValueAtTime(0.3, audioContext.currentTime);
+                                gain2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                                osc2.start();
+                                osc2.stop(audioContext.currentTime + 0.4);
+                            } catch(e) {}
+                        }, 100);
+                        
+                        setTimeout(() => {
+                            if (!soundEnabled || !audioContext) return;
+                            try {
+                                const osc3 = audioContext.createOscillator();
+                                const gain3 = audioContext.createGain();
+                                osc3.connect(gain3);
+                                gain3.connect(audioContext.destination);
+                                osc3.frequency.setValueAtTime(784, audioContext.currentTime);
+                                gain3.gain.setValueAtTime(0.3, audioContext.currentTime);
+                                gain3.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.4);
+                                osc3.start();
+                                osc3.stop(audioContext.currentTime + 0.4);
+                            } catch(e) {}
+                        }, 200);
+                        break;
+                    case 'giggle':
+                        for (let i = 0; i < 3; i++) {
+                            setTimeout(() => {
+                                if (!soundEnabled || !audioContext) return;
+                                try {
+                                    const osc = audioContext.createOscillator();
+                                    const gain = audioContext.createGain();
+                                    osc.connect(gain);
+                                    gain.connect(audioContext.destination);
+                                    osc.frequency.setValueAtTime(600 + i * 100, audioContext.currentTime);
+                                    osc.frequency.exponentialRampToValueAtTime(400 + i * 50, audioContext.currentTime + 0.1);
+                                    gain.gain.setValueAtTime(0.2, audioContext.currentTime);
+                                    gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                                    osc.start();
+                                    osc.stop(audioContext.currentTime + 0.1);
+                                } catch(e) {}
+                            }, i * 80);
+                        }
+                        break;
+                }
+            } catch(e) {
+                console.log('Sound play error:', e);
+            }
+        }
+
+        // Play uploaded voice
+        function playYesVoice() {
+            if (voiceAudios.yes) {
+                voiceAudios.yes.currentTime = 0;
+                voiceAudios.yes.play().catch(e => console.log('Voice play error:', e));
+            }
+        }
+
+        function playNoVoice() {
+            // Find the next available voice
+            let voicePlayed = false;
+            let startIndex = noVoiceIndex;
+            
+            do {
+                if (voiceAudios.no[noVoiceIndex]) {
+                    voiceAudios.no[noVoiceIndex].currentTime = 0;
+                    voiceAudios.no[noVoiceIndex].play().catch(e => console.log('Voice play error:', e));
+                    voicePlayed = true;
+                }
+                // Move to next voice (cycle through 0-3)
+                noVoiceIndex = (noVoiceIndex + 1) % 4;
+                
+                // If we've checked all 4 and none are loaded, break
+                if (noVoiceIndex === startIndex && !voicePlayed) break;
+                
+            } while (!voicePlayed && noVoiceIndex !== startIndex);
+        }
+
+        // Haptic feedback
+        function vibrate(pattern = 50) {
+            if ('vibrate' in navigator) {
+                try {
+                    navigator.vibrate(pattern);
+                } catch(e) {}
+            }
+        }
+
+        // DOM Elements
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const victoryScreen = document.getElementById('victoryScreen');
+        const replayBtn = document.getElementById('replayBtn');
+        const attemptCounter = document.getElementById('attemptCounter');
+        const buttonsContainer = document.getElementById('buttonsContainer');
+
+        let attempts = 0;
+        let isOrbiting = false;
+        let orbitInterval = null;
+        let isProcessingClick = false; // Prevent double clicks
+
+        const noButtonTexts = [
+            "No", "Are you sure?", "Maybe?", "Oops!", "Think again!", 
+            "Really?", "Come on!", "Nope!", "Try harder!", "Please? 🥺"
+        ];
+
+        // Create floating particles - reduced count for Redmi Y2
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particles = ['💕', '✨', '💗', '⭐', '💖', '🌸'];
+            const particleCount = 12; // Reduced for better performance
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.fontSize = (Math.random() * 16 + 10) + 'px';
+                particle.style.animationDuration = (Math.random() * 15 + 15) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Validate and correct button position to ensure it stays within frame
+        function validateButtonPosition() {
+            if (!noBtn.classList.contains('fixed-position')) return;
+            
+            // Force a reflow to get accurate dimensions
+            const btnRect = noBtn.getBoundingClientRect();
+            const buttonWidth = btnRect.width || noBtn.offsetWidth || 100;
+            const buttonHeight = btnRect.height || noBtn.offsetHeight || 50;
+            
+            // Use actual viewport dimensions
+            const FRAME_WIDTH = window.innerWidth;
+            const FRAME_HEIGHT = window.innerHeight;
+            const padding = 20;
+            const topOffset = 100;
+            
+            const currentLeft = parseFloat(noBtn.style.left) || 0;
+            const currentTop = parseFloat(noBtn.style.top) || 0;
+            
+            // Calculate safe boundaries - ensure button fits completely
+            const minX = padding;
+            const minY = topOffset;
+            const maxX = Math.max(minX, FRAME_WIDTH - buttonWidth - padding);
+            const maxY = Math.max(minY, FRAME_HEIGHT - buttonHeight - padding);
+            
+            // Check if button is out of bounds and correct it
+            let correctedX = currentLeft;
+            let correctedY = currentTop;
+            
+            // Check left edge
+            if (currentLeft < minX) correctedX = minX;
+            // Check top edge
+            if (currentTop < minY) correctedY = minY;
+            // Check right edge - button's right edge must be within frame
+            if (currentLeft + buttonWidth > FRAME_WIDTH - padding) {
+                correctedX = FRAME_WIDTH - buttonWidth - padding;
+            }
+            // Check bottom edge - button's bottom edge must be within frame
+            if (currentTop + buttonHeight > FRAME_HEIGHT - padding) {
+                correctedY = FRAME_HEIGHT - buttonHeight - padding;
+            }
+            
+            // Ensure we don't go below minimums
+            correctedX = Math.max(minX, correctedX);
+            correctedY = Math.max(minY, correctedY);
+            
+            // Final safety check - ensure button edges are within frame
+            correctedX = Math.max(0, Math.min(correctedX, FRAME_WIDTH - buttonWidth));
+            correctedY = Math.max(0, Math.min(correctedY, FRAME_HEIGHT - buttonHeight));
+            
+            // Apply correction if needed (always apply to ensure position is correct)
+            noBtn.style.left = correctedX + 'px';
+            noBtn.style.top = correctedY + 'px';
+        }
+
+        // Get safe position for No button - strictly within frame boundaries
+        function getSafePosition(excludeX, excludeY) {
+            // Get actual button dimensions
+            const btnRect = noBtn.getBoundingClientRect();
+            const buttonWidth = btnRect.width || noBtn.offsetWidth || 100;
+            const buttonHeight = btnRect.height || noBtn.offsetHeight || 50;
+            
+            // Use actual viewport dimensions (for 720x1440px display)
+            const FRAME_WIDTH = window.innerWidth;
+            const FRAME_HEIGHT = window.innerHeight;
+            
+            // Safe padding from edges
+            const padding = 20;
+            const topOffset = 100; // Account for content at top
+            
+            // Calculate strict boundaries - button must fit completely inside
+            const minX = padding;
+            const minY = topOffset;
+            const maxX = Math.max(minX, FRAME_WIDTH - buttonWidth - padding);
+            const maxY = Math.max(minY, FRAME_HEIGHT - buttonHeight - padding);
+            
+            // Validate boundaries
+            if (maxX < minX || maxY < minY) {
+                // If button too large, center it
+                return {
+                    x: Math.max(0, Math.min((FRAME_WIDTH - buttonWidth) / 2, FRAME_WIDTH - buttonWidth)),
+                    y: Math.max(0, Math.min((FRAME_HEIGHT - buttonHeight) / 2, FRAME_HEIGHT - buttonHeight))
+                };
+            }
+            
+            // Generate random position within strict boundaries
+            let newX, newY;
+            let safeAttempts = 0;
+            
+            do {
+                // Random position strictly within boundaries
+                newX = minX + Math.random() * (maxX - minX);
+                newY = minY + Math.random() * (maxY - minY);
+                safeAttempts++;
+            } while (
+                safeAttempts < 50 &&
+                excludeX !== undefined &&
+                excludeY !== undefined &&
+                Math.abs(newX - excludeX) < 120 &&
+                Math.abs(newY - excludeY) < 120
+            );
+            
+            // STRICT CLAMPING - ensure button never goes outside frame
+            newX = Math.max(minX, Math.min(newX, maxX));
+            newY = Math.max(minY, Math.min(newY, maxY));
+            
+            // Final verification - button edges must be within frame
+            // Ensure right edge doesn't exceed frame
+            const finalX = Math.max(0, Math.min(newX, FRAME_WIDTH - buttonWidth - padding));
+            // Ensure bottom edge doesn't exceed frame
+            const finalY = Math.max(0, Math.min(newY, FRAME_HEIGHT - buttonHeight - padding));
+            
+            // Double-check boundaries
+            const safeX = Math.max(padding, Math.min(finalX, FRAME_WIDTH - buttonWidth - padding));
+            const safeY = Math.max(topOffset, Math.min(finalY, FRAME_HEIGHT - buttonHeight - padding));
+            
+            return { x: safeX, y: safeY };
+        }
+
+        // Evasion functions
+        function basicEvasion(clientX, clientY) {
+            const pos = getSafePosition(clientX, clientY);
+            noBtn.classList.add('fixed-position');
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = pos.x + 'px';
+            noBtn.style.top = pos.y + 'px';
+            noBtn.style.transition = 'left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), top 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+            // Validate position immediately and after transition
+            validateButtonPosition();
+            setTimeout(() => validateButtonPosition(), 50);
+            setTimeout(() => validateButtonPosition(), 350);
+        }
+
+        function teleportEvasion(clientX, clientY) {
+            const rect = noBtn.getBoundingClientRect();
+            
+            // Create poof effect
+            const poof = document.createElement('div');
+            poof.className = 'poof';
+            poof.textContent = '💨';
+            poof.style.left = (rect.left + rect.width / 2 - 15) + 'px';
+            poof.style.top = (rect.top + rect.height / 2 - 15) + 'px';
+            document.body.appendChild(poof);
+            setTimeout(() => poof.remove(), 500);
+            
+            noBtn.style.opacity = '0';
+            noBtn.style.transform = 'scale(0)';
+            
+            setTimeout(() => {
+                const pos = getSafePosition(clientX, clientY);
+                noBtn.classList.add('fixed-position');
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = pos.x + 'px';
+                noBtn.style.top = pos.y + 'px';
+                noBtn.style.transition = 'none';
+                
+                requestAnimationFrame(() => {
+                    noBtn.style.opacity = '1';
+                    noBtn.style.transform = 'scale(1)';
+                    noBtn.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+                    // Validate position immediately and after animation
+                    validateButtonPosition();
+                    setTimeout(() => validateButtonPosition(), 50);
+                    setTimeout(() => validateButtonPosition(), 250);
+                });
+            }, 200);
+        }
+
+        function orbitEvasion() {
+            if (isOrbiting) return;
+            isOrbiting = true;
+            
+            const yesRect = yesBtn.getBoundingClientRect();
+            const centerX = yesRect.left + yesRect.width / 2;
+            const centerY = yesRect.top + yesRect.height / 2;
+            
+            const buttonWidth = noBtn.offsetWidth || 100;
+            const buttonHeight = noBtn.offsetHeight || 50;
+            const FRAME_WIDTH = window.innerWidth;
+            const FRAME_HEIGHT = window.innerHeight;
+            const padding = 20;
+            const topOffset = 100;
+            
+            let angle = 0;
+            const radius = Math.min(100, window.innerWidth * 0.2);
+            
+            noBtn.style.transition = 'none';
+            noBtn.classList.add('fixed-position');
+            
+            orbitInterval = setInterval(() => {
+                angle += 0.08;
+                let x = centerX + Math.cos(angle) * radius - buttonWidth / 2;
+                let y = centerY + Math.sin(angle) * radius - buttonHeight / 2;
+                
+                // Clamp to frame boundaries
+                const minX = padding;
+                const minY = topOffset;
+                const maxX = Math.max(minX, FRAME_WIDTH - buttonWidth - padding);
+                const maxY = Math.max(minY, FRAME_HEIGHT - buttonHeight - padding);
+                
+                x = Math.max(minX, Math.min(x, maxX));
+                y = Math.max(minY, Math.min(y, maxY));
+                
+                noBtn.style.position = 'fixed';
+                noBtn.style.left = x + 'px';
+                noBtn.style.top = y + 'px';
+            }, 16);
+            
+            setTimeout(() => {
+                clearInterval(orbitInterval);
+                isOrbiting = false;
+                noBtn.style.transition = 'all 0.3s ease';
+                // Validate position after orbit ends
+                validateButtonPosition();
+            }, 1800);
+        }
+
+        function shyEvasion() {
+            const yesRect = yesBtn.getBoundingClientRect();
+            const buttonWidth = noBtn.offsetWidth || 100;
+            const buttonHeight = noBtn.offsetHeight || 50;
+            const FRAME_WIDTH = window.innerWidth;
+            const FRAME_HEIGHT = window.innerHeight;
+            const padding = 20;
+            const topOffset = 100;
+            
+            // Calculate center position, clamped to frame
+            let centerX = yesRect.left + yesRect.width / 2 - buttonWidth / 2;
+            let centerY = yesRect.top + yesRect.height / 2 - buttonHeight / 2;
+            
+            // Clamp to boundaries
+            const minX = padding;
+            const minY = topOffset;
+            const maxX = Math.max(minX, FRAME_WIDTH - buttonWidth - padding);
+            const maxY = Math.max(minY, FRAME_HEIGHT - buttonHeight - padding);
+            
+            centerX = Math.max(minX, Math.min(centerX, maxX));
+            centerY = Math.max(minY, Math.min(centerY, maxY));
+            
+            noBtn.classList.add('fixed-position');
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = centerX + 'px';
+            noBtn.style.top = centerY + 'px';
+            noBtn.style.transform = 'scale(0.3)';
+            noBtn.style.opacity = '0.5';
+            noBtn.style.zIndex = '-1';
+            
+            setTimeout(() => {
+                const pos = getSafePosition(yesRect.left, yesRect.top);
+                noBtn.style.left = pos.x + 'px';
+                noBtn.style.top = pos.y + 'px';
+                noBtn.style.transform = 'scale(1)';
+                noBtn.style.opacity = '1';
+                noBtn.style.zIndex = '5';
+                // Validate position immediately and after animation
+                validateButtonPosition();
+                setTimeout(() => validateButtonPosition(), 50);
+                setTimeout(() => validateButtonPosition(), 250);
+            }, 800);
+        }
+
+        function inversionEvasion(clientX, clientY) {
+            document.body.classList.add('inverted');
+            
+            setTimeout(() => {
+                document.body.classList.remove('inverted');
+                basicEvasion(clientX, clientY);
+            }, 800);
+        }
+
+        // Get touch/mouse coordinates
+        function getEventCoords(e) {
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            } else if (e.changedTouches && e.changedTouches.length > 0) {
+                return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+            } else {
+                return { x: e.clientX || window.innerWidth / 2, y: e.clientY || window.innerHeight / 2 };
+            }
+        }
+
+        // No button click handler
+        function handleNoClick(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (isOrbiting || isProcessingClick) return;
+            isProcessingClick = true;
+            
+            // Reset processing flag after short delay
+            setTimeout(() => { isProcessingClick = false; }, 300);
+            
+            attempts++;
+            updateAttemptCounter();
+            vibrate(30);
+            
+            // Play No voice
+            playNoVoice();
+            
+            // Update button text occasionally
+            if (attempts > 2 && Math.random() > 0.5) {
+                const textIndex = Math.min(attempts - 1, noButtonTexts.length - 1);
+                noBtn.textContent = noButtonTexts[textIndex];
+            }
+            
+            const coords = getEventCoords(e);
+            
+            // Choose evasion based on attempts
+            const evasionType = Math.random();
+            
+            if (attempts < 3) {
+                basicEvasion(coords.x, coords.y);
+            } else if (attempts < 5) {
+                if (evasionType < 0.5) basicEvasion(coords.x, coords.y);
+                else teleportEvasion(coords.x, coords.y);
+            } else if (attempts < 8) {
+                if (evasionType < 0.3) basicEvasion(coords.x, coords.y);
+                else if (evasionType < 0.5) teleportEvasion(coords.x, coords.y);
+                else if (evasionType < 0.7) orbitEvasion();
+                else shyEvasion();
+            } else {
+                if (evasionType < 0.2) basicEvasion(coords.x, coords.y);
+                else if (evasionType < 0.4) teleportEvasion(coords.x, coords.y);
+                else if (evasionType < 0.55) orbitEvasion();
+                else if (evasionType < 0.7) shyEvasion();
+                else inversionEvasion(coords.x, coords.y);
+            }
+        }
+
+        // Update attempt counter
+        function updateAttemptCounter() {
+            if (attempts > 0) {
+                attemptCounter.textContent = `Attempts: ${attempts}`;
+            }
+        }
+
+        // Yes button click handler
+        function handleYesClick(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (isProcessingClick) return;
+            isProcessingClick = true;
+            
+            playYesVoice();
+            vibrate([100, 50, 100]);
+            showVictory();
+            
+            setTimeout(() => { isProcessingClick = false; }, 500);
+        }
+
+        // Show victory screen
+        function showVictory() {
+            victoryScreen.classList.add('active');
+            
+            // Trigger confetti
+            launchConfetti();
+            
+            // Animate elements
+            setTimeout(() => {
+                document.getElementById('victoryTitle').classList.add('animate');
+            }, 100);
+            
+            setTimeout(() => {
+                document.getElementById('victoryText').classList.add('animate');
+            }, 300);
+            
+            setTimeout(() => {
+                document.getElementById('bouquet').classList.add('animate');
+            }, 800);
+            
+            setTimeout(() => {
+                document.getElementById('replayBtn').classList.add('animate');
+            }, 1200);
+        }
+
+        // Confetti system - optimized for Redmi Y2
+        const confettiCanvas = document.getElementById('confetti-canvas');
+        const ctx = confettiCanvas.getContext('2d');
+        let confettiParticles = [];
+        let animationId;
+
+        function resizeCanvas() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+        }
+
+        class ConfettiParticle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 8 + 4;
+                this.speedX = (Math.random() - 0.5) * 12;
+                this.speedY = Math.random() * -12 - 4;
+                this.gravity = 0.25;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 8;
+                this.color = ['#ff6b9d', '#ffd700', '#ff8fab', '#cdb4db', '#ffafcc'][Math.floor(Math.random() * 5)];
+                this.shape = Math.random() > 0.5 ? 'heart' : 'circle';
+                this.opacity = 1;
+            }
+
+            update() {
+                this.speedY += this.gravity;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.rotation += this.rotationSpeed;
+                this.speedX *= 0.99;
+                
+                if (this.y > confettiCanvas.height - 50) {
+                    this.opacity -= 0.03;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                
+                if (this.shape === 'heart') {
+                    ctx.beginPath();
+                    ctx.moveTo(0, -this.size / 4);
+                    ctx.bezierCurveTo(this.size / 2, -this.size, this.size, -this.size / 4, 0, this.size);
+                    ctx.bezierCurveTo(-this.size, -this.size / 4, -this.size / 2, -this.size, 0, -this.size / 4);
+                    ctx.fill();
+                } else {
+    ctx.beginPath();
+                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+    ctx.fill();
+                }
+                
+                ctx.restore();
+            }
+        }
+
+        function launchConfetti() {
+            resizeCanvas();
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            // Reduced particle count for better performance
+            for (let i = 0; i < 80; i++) {
+                confettiParticles.push(new ConfettiParticle(centerX, centerY));
+            }
+            
+            animateConfetti();
+            
+            // Additional bursts
+            setTimeout(() => {
+                for (let i = 0; i < 50; i++) {
+                    confettiParticles.push(new ConfettiParticle(centerX, centerY));
+                }
+            }, 300);
+            
+            setTimeout(() => {
+                for (let i = 0; i < 40; i++) {
+                    confettiParticles.push(new ConfettiParticle(centerX, centerY));
+                }
+            }, 600);
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            
+            confettiParticles = confettiParticles.filter(p => p.opacity > 0);
+            
+            confettiParticles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            
+            if (confettiParticles.length > 0) {
+                animationId = requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        // Reset game
+        function resetGame() {
+            attempts = 0;
+            noVoiceIndex = 0; // Reset voice index
+            isOrbiting = false;
+            isProcessingClick = false;
+            if (orbitInterval) clearInterval(orbitInterval);
+            
+            // Reset No button
+            noBtn.classList.remove('fixed-position');
+            noBtn.style.position = '';
+            noBtn.style.left = '';
+            noBtn.style.top = '';
+            noBtn.style.transform = '';
+            noBtn.style.opacity = '';
+            noBtn.style.zIndex = '';
+            noBtn.style.transition = '';
+            noBtn.textContent = 'No';
+            
+            // Reset attempt counter
+            attemptCounter.textContent = '';
+            
+            // Reset victory screen
+            victoryScreen.classList.remove('active');
+            document.getElementById('victoryTitle').classList.remove('animate');
+            document.getElementById('victoryText').classList.remove('animate');
+            document.getElementById('bouquet').classList.remove('animate');
+            document.getElementById('replayBtn').classList.remove('animate');
+            
+            // Reset victory title transform
+            document.getElementById('victoryTitle').style.transform = '';
+            document.getElementById('victoryTitle').style.opacity = '';
+            
+            // Clear confetti
+            confettiParticles = [];
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+            if (animationId) cancelAnimationFrame(animationId);
+            
+            // Remove inverted class if any
+            document.body.classList.remove('inverted');
+        }
+
+        // Event listeners - using both click and touch for better mobile support
+        noBtn.addEventListener('touchstart', handleNoClick, { passive: false });
+        noBtn.addEventListener('click', function(e) {
+            // Only handle click if it wasn't a touch event
+            if (e.pointerType !== 'touch') {
+                handleNoClick(e);
+            }
+        });
+
+        yesBtn.addEventListener('touchstart', handleYesClick, { passive: false });
+        yesBtn.addEventListener('click', function(e) {
+            if (e.pointerType !== 'touch') {
+                handleYesClick(e);
+            }
+        });
+
+        replayBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            resetGame();
+        }, { passive: false });
+        replayBtn.addEventListener('click', resetGame);
+
+        // Desktop: Move away on mouse approach (only after several attempts)
+        let lastMouseMove = 0;
+document.addEventListener('mousemove', (e) => {
+            if (isOrbiting || victoryScreen.classList.contains('active')) return;
+            
+            // Throttle mouse move events
+            const now = Date.now();
+            if (now - lastMouseMove < 50) return;
+            lastMouseMove = now;
+            
+            const rect = noBtn.getBoundingClientRect();
+            const btnCenterX = rect.left + rect.width / 2;
+            const btnCenterY = rect.top + rect.height / 2;
+            
+            const distance = Math.sqrt(
+                Math.pow(e.clientX - btnCenterX, 2) + 
+                Math.pow(e.clientY - btnCenterY, 2)
+            );
+            
+            if (distance < 70 && attempts > 4) {
+                basicEvasion(e.clientX, e.clientY);
+            }
+        });
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', () => {
+            setTimeout(resizeCanvas, 100);
+        });
+
+        // Initialize
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            // Validate button position on resize
+            if (noBtn.classList.contains('fixed-position')) {
+                validateButtonPosition();
+            }
+        });
+        createParticles();
+        resizeCanvas();
+        
+        // Continuous validation to ensure button stays in frame - check more frequently
+        setInterval(() => {
+            if (noBtn.classList.contains('fixed-position')) {
+                validateButtonPosition();
+            }
+        }, 50); // Check every 50ms for faster correction
+
+        // Preload audio context and start background music on first touch
+        document.addEventListener('touchstart', function initTouch() {
+            initAudio();
+            startBackgroundMusic();
+            document.removeEventListener('touchstart', initTouch);
+        }, { once: true });
+
+        // Also start music on first click (for desktop)
+        let musicStarted = false;
+        function tryStartMusic() {
+            if (!musicStarted && backgroundMusic) {
+                startBackgroundMusic();
+                musicStarted = true;
+            }
+        }
+
+        // Start music on any button interaction
+        yesBtn.addEventListener('touchstart', tryStartMusic, { once: true });
+        yesBtn.addEventListener('click', tryStartMusic, { once: true });
+        noBtn.addEventListener('touchstart', tryStartMusic, { once: true });
+        noBtn.addEventListener('click', tryStartMusic, { once: true });
+</script>
+</body>
+</html>
